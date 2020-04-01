@@ -24,7 +24,7 @@ export const RCF: Calculation = (
 
   return [...Array(duration)].map((_, index) => {
     const principal = amount / duration;
-    const interest = (amount - index * principal) * rate;
+    const interest = (amount - index * principal) * (rate / 100);
     const tuple = {
       repaymentDate: moment().format("l"),
       principal,
@@ -48,7 +48,8 @@ export const BL: Calculation = (
   return [...Array(duration)].map((_, index) => {
     const principal = amount / duration;
     const interest =
-      (amount - index * principal) * rate + (index === 0 ? amount * 0.1 : 0);
+      (amount - index * principal) * (rate / 100) +
+      (index === 0 ? amount * 0.1 : 0);
     const tuple = {
       repaymentDate: moment().format("l"),
       principal,

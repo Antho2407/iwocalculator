@@ -1,5 +1,5 @@
 import React from "react";
-import { FieldRowRoot } from "./FieldRow.components";
+import { FieldRowRoot, Label, Info } from "./FieldRow.components";
 
 export interface FieldRowProps {
   label: string;
@@ -9,9 +9,9 @@ export interface FieldRowProps {
 const FieldRow: React.FC<FieldRowProps> = ({ label, info, children }) => {
   return (
     <FieldRowRoot>
-      {label}
+      <Label>{label}</Label>
       {children}
-      {info}
+      <Info>{info}</Info>
     </FieldRowRoot>
   );
 };

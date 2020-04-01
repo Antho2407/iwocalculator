@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { ProductRoot } from "./Product.components";
+import { ProductRoot, Label, Table } from "./Product.components";
 import FieldRow from "../fieldRow/FieldRow";
 import { Calculation, Tuple } from "./calculation";
+import { Input } from "../input/Input.components";
 
 export interface ProductProps {
   label: string;
@@ -38,8 +39,9 @@ const Product: React.FC<ProductProps> = ({
 
   return (
     <ProductRoot>
+      <Label>{label}</Label>
       <FieldRow label="Interest rate" info="(in %)">
-        <input
+        <Input
           type="number"
           onChange={handleRateChanged}
           value={rate}
@@ -47,29 +49,32 @@ const Product: React.FC<ProductProps> = ({
           max={100}
         />
       </FieldRow>
-      <table>
-        <tr>
-          <th>Repayment date</th>
-          <th>Principal</th>
-          <th>Interest</th>
-          <th>Total repayment</th>
-        </tr>
-        {tuples.map((tuple) => (
+      <Table>
+        <thead>
           <tr>
-            <td>{tuple.repaymentDate}</td>
-            <td>{tuple.principal}</td>
-            <td>{tuple.interest}</td>
-            <td>{tuple.total}</td>
+            <th>Repayment date</th>
+            <th>Principal</th>
+            <th>Interest</th>
+            <th>Total repayment</th>
           </tr>
-        ))}
-        <tr>
-          <td>Total</td>
-          <td>{totals.principal}</td>
-          <td>{totals.interest}</td>
-          <td>{totals.total}</td>
-        </tr>
-      </table>
-      {label}
+        </thead>
+        <tbody>
+          {tuples.map((tuple, index) => (
+            <tr key={`tuple_${index}`}>
+              <td>{tuple.repaymentDate}</td>
+              <td>{tuple.principal}</td>
+              <td>{tuple.interest}</td>
+              <td>{tuple.total}</td>
+            </tr>
+          ))}
+          <tr>
+            <td>Total</td>
+            <td>{totals.principal}</td>
+            <td>{totals.interest}</td>
+            <td>{totals.total}</td>
+          </tr>
+        </tbody>
+      </Table>
     </ProductRoot>
   );
 };

@@ -1,6 +1,7 @@
 import React from "react";
 import { TopMenuRoot } from "./TopMenu.components";
 import FieldRow from "../fieldRow/FieldRow";
+import { Input } from "../input/Input.components";
 
 export interface TopMenuProps {
   onAmountChanged: (value: number) => void;
@@ -25,10 +26,10 @@ const TopMenu: React.FC<TopMenuProps> = ({
   return (
     <TopMenuRoot>
       <FieldRow label="Amount requested" info="(in £)">
-        <input type="number" onChange={handleAmountChanged} value={amount} />
+        <Input type="number" onChange={handleAmountChanged} value={amount} />
       </FieldRow>
       <FieldRow label="Amount requested" info="(in months)">
-        <input
+        <Input
           type="number"
           min={0}
           step={1}

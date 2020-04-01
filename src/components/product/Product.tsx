@@ -1,0 +1,77 @@
+import React, { useState } from "react";
+import { ProductRoot } from "./Product.components";
+import FieldRow from "../fieldRow/FieldRow";
+import { Calculation, Tuple } from "./calculation";
+
+export interface ProductProps {
+  label: string;
+  amount: number;
+  duration: number;
+  calculation: Calculation;
+}
+
+const Product: React.FC<ProductProps> = ({
+  label,
+  amount,
+  duration,
+  calculation,
+}) => {
+  const [rate, setRate] = useState(3);
+  const handleRateChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setRate(parseInt(e.target.value));
+  };
+  const tuples = calculation(amount, duration, rate);
+  const getTotals = (tuples: Tuple[]) => {
+    let principal = 0;
+    let interest = 0;
+    let total = 0;
+
+    tuples.forEach((tuple) => {
+      principal += tuple.principal;
+      interest += tuple.interest;
+      total += tuple.total;
+    });
+
+    return { principal, interest, total };
+  };
+  const totals = getTotals(tuples);
+
+  return (
+    <ProductRoot>
+      <FieldRow label="Interest rate" info="(in %)">
+        <input
+          type="number"
+          onChange={handleRateChanged}
+          value={rate}
+          min={0}
+          max={100}
+        />
+      </FieldRow>
+      <table>
+        <tr>
+          <th>Repayment date</th>
+          <th>Principal</th>
+          <th>Interest</th>
+          <th>Total repayment</th>
+        </tr>
+        {tuples.map((tuple) => (
+          <tr>
+            <td>{tuple.repaymentDate}</td>
+            <td>{tuple.principal}</td>
+            <td>{tuple.interest}</td>
+            <td>{tuple.total}</td>
+          </tr>
+        ))}
+        <tr>
+          <td>Total</td>
+          <td>{totals.principal}</td>
+          <td>{totals.interest}</td>
+          <td>{totals.total}</td>
+        </tr>
+      </table>
+      {label}
+    </ProductRoot>
+  );
+};
+
+export default Product;

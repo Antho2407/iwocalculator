@@ -1,3 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Field /> When the component is mounted should render successfully 1`] = `ShallowWrapper {}`;
+exports[`<Field /> When the component is mounted should render successfully 1`] = `
+<styled.div>
+  <styled.span>
+    test-label
+  </styled.span>
+  <styled.span>
+    test-info
+  </styled.span>
+</styled.div>
+`;

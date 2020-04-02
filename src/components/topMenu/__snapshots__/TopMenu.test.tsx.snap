@@ -1,3 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<TopMenu /> When the component is mounted should render successfully 1`] = `ShallowWrapper {}`;
+exports[`<TopMenu /> When the component is mounted should render successfully 1`] = `
+<styled.div>
+  <FieldRow
+    info="(in £)"
+    label="Amount requested"
+  >
+    <styled.input
+      onChange={[Function]}
+      type="number"
+      value={1000}
+    />
+  </FieldRow>
+  <FieldRow
+    info="(in months)"
+    label="Amount requested"
+  >
+    <styled.input
+      min={0}
+      onChange={[Function]}
+      step={1}
+      type="number"
+      value={4}
+    />
+  </FieldRow>
+</styled.div>
+`;

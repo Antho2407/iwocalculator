@@ -3,7 +3,7 @@ const webpack = require("webpack");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: ["./src/app.tsx"],
+  entry: ["./src/index.tsx"],
   module: {
     rules: [
       {
@@ -27,7 +27,6 @@ module.exports = {
   },
   output: {
     path: `${__dirname}/public`,
-    publicPath: "/",
     filename: "app.min.js",
   },
   optimization: {

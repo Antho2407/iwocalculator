@@ -7,8 +7,12 @@
     "@babel/preset-env": "7.5.0",
     "@babel/preset-react": "7.0.0",
     "@babel/runtime": "7.5.0",
+    "@types/enzyme": "^3.10.5",
+    "@types/jest": "^25.1.4",
     "babel-eslint": "9.0.0",
     "babel-loader": "8.0.4",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
     "eslint": "5.16.0",
     "eslint-config-airbnb": "17.1.1",
     "eslint-config-prettier": "4.3.0",
@@ -19,15 +23,19 @@
     "eslint-plugin-prettier": "3.1.2",
     "eslint-plugin-react": "7.18.0",
     "eslint-plugin-react-hooks": "1.7.0",
+    "gh-pages": "^2.2.0",
     "html-loader": "^1.0.0",
     "html-webpack-plugin": "^4.0.3",
     "husky": "^4.2.3",
+    "jest": "^25.2.4",
     "lint-staged": "^10.1.0",
     "prettier": "^2.0.2",
+    "react-test-renderer": "^16.13.1",
     "regenerator-runtime": "0.13.2",
     "terser-webpack-plugin": "1.2.3",
+    "ts-jest": "^25.3.0",
     "ts-loader": "6.2.1",
-    "typescript": "3.7.5",
+    "typescript": "^3.8.3",
     "webpack": "4.41.6",
     "webpack-cli": "3.1.2",
     "webpack-dev-server": "3.10.3"
@@ -48,8 +56,10 @@
   "scripts": {
     "build": "webpack --config ./webpack.prod.js --mode production",
     "dev": "webpack-dev-server",
-    "test": "echo \"No test yet\"",
-    "watch": "webpack --config ./webpack.config.js --mode development"
+    "test": "jest",
+    "watch": "webpack --config ./webpack.config.js --mode development",
+    "deploy": "gh-pages -d public",
+    "publish-demo": "yarn build && yarn deploy"
   },
   "husky": {
     "hooks": {
@@ -60,6 +70,30 @@
   "lint-staged": {
     "*.{ts,tsx,js,json,css,md}": [
       "prettier --write"
+    ]
+  },
+  "jest": {
+    "globals": {
+      "ts-jest": {
+        "diagnostics": false,
+        "tsConfig": "<rootDir>/tsconfig.json"
+      }
+    },
+    "setupFiles": [
+      "<rootDir>/test-shim.js",
+      "<rootDir>/test-setup.js"
+    ],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "transform": {
+      ".(ts|tsx)": "ts-jest",
+      "^.+\\.(ts|tsx)$": "<rootDir>/test-preprocessor.js"
+    },
+    "testMatch": [
+      "<rootDir>/src/**/?(*.)(spec|test).(ts|js)?(x)"
     ]
   }
 }

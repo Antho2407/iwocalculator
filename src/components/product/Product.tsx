@@ -36,6 +36,7 @@ const Product: React.FC<ProductProps> = ({
     return { principal, interest, total };
   };
   const totals = getTotals(tuples);
+  const format = (number: number) => number.toFixed(2);
 
   return (
     <ProductRoot>
@@ -62,16 +63,16 @@ const Product: React.FC<ProductProps> = ({
           {tuples.map((tuple, index) => (
             <tr key={`tuple_${index}`}>
               <td>{tuple.repaymentDate}</td>
-              <td>{tuple.principal}</td>
-              <td>{tuple.interest}</td>
-              <td>{tuple.total}</td>
+              <td>{format(tuple.principal)}</td>
+              <td>{format(tuple.interest)}</td>
+              <td>{format(tuple.total)}</td>
             </tr>
           ))}
           <tr>
             <td>Total</td>
-            <td>{totals.principal}</td>
-            <td>{totals.interest}</td>
-            <td>{totals.total}</td>
+            <td>{format(totals.principal)}</td>
+            <td>{format(totals.interest)}</td>
+            <td>{format(totals.total)}</td>
           </tr>
         </tbody>
       </Table>

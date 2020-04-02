@@ -5,9 +5,10 @@ export const ProductRoot = styled.div`
   flex-direction: column;
   padding: 20px;
   margin: 20px;
-  background-color: #fb534a;
+  background-color: #ff857e;
   color: #ffffff;
   border-radius: 5px;
+  box-shadow: 4px 4px 10px 2px #b9b9b9;
 `;
 
 export const Label = styled.h3`

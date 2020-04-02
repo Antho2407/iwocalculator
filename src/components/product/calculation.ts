@@ -26,13 +26,12 @@ export const RCF: Calculation = (
     const principal = amount / duration;
     const interest = (amount - index * principal) * (rate / 100);
     const tuple = {
-      repaymentDate: moment().format("l"),
+      repaymentDate: currentDate.format("L"),
       principal,
       interest,
       total: principal + interest,
     };
-
-    currentDate = moment(currentDate).add(1, "M");
+    currentDate.add(1, "M");
 
     return tuple;
   });
@@ -51,12 +50,12 @@ export const BL: Calculation = (
       (amount - index * principal) * (rate / 100) +
       (index === 0 ? amount * 0.1 : 0);
     const tuple = {
-      repaymentDate: moment().format("l"),
+      repaymentDate: currentDate.format("L"),
       principal,
       interest,
       total: principal + interest,
     };
-    currentDate = moment(currentDate).add(1, "M");
+    currentDate.add(1, "M");
 
     return tuple;
   });

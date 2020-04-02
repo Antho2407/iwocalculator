@@ -1,9 +1,12 @@
 import React, { FC, useState } from "react";
+import moment from "moment";
 
 import { AppRoot, Title } from "./App.components";
 import TopMenu from "../topMenu/TopMenu";
 import Product from "../product/Product";
 import { RCF, BL } from "../product/calculation";
+
+moment.locale("en-gb");
 
 const App: FC = () => {
   const [amount, setAmount] = useState(10000);
@@ -18,7 +21,7 @@ const App: FC = () => {
         amount={amount}
         duration={duration}
       />
-      {amount && duration && (
+      {(amount || 0) > 0 && (duration || 0) > 0 && (
         <>
           <Product
             label="Resolving Credit Facility"

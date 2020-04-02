@@ -50,32 +50,34 @@ const Product: React.FC<ProductProps> = ({
           max={100}
         />
       </FieldRow>
-      <Table>
-        <thead>
-          <tr>
-            <th>Repayment date</th>
-            <th>Principal</th>
-            <th>Interest</th>
-            <th>Total repayment</th>
-          </tr>
-        </thead>
-        <tbody>
-          {tuples.map((tuple, index) => (
-            <tr key={`tuple_${index}`}>
-              <td>{tuple.repaymentDate}</td>
-              <td>{format(tuple.principal)}</td>
-              <td>{format(tuple.interest)}</td>
-              <td>{format(tuple.total)}</td>
+      {(rate || 0) > 0 && (
+        <Table>
+          <thead>
+            <tr>
+              <th>Repayment date</th>
+              <th>Principal</th>
+              <th>Interest</th>
+              <th>Total repayment</th>
             </tr>
-          ))}
-          <tr>
-            <td>Total</td>
-            <td>{format(totals.principal)}</td>
-            <td>{format(totals.interest)}</td>
-            <td>{format(totals.total)}</td>
-          </tr>
-        </tbody>
-      </Table>
+          </thead>
+          <tbody>
+            {tuples.map((tuple, index) => (
+              <tr key={`tuple_${index}`}>
+                <td>{tuple.repaymentDate}</td>
+                <td>{format(tuple.principal)}</td>
+                <td>{format(tuple.interest)}</td>
+                <td>{format(tuple.total)}</td>
+              </tr>
+            ))}
+            <tr>
+              <td>Total</td>
+              <td>{format(totals.principal)}</td>
+              <td>{format(totals.interest)}</td>
+              <td>{format(totals.total)}</td>
+            </tr>
+          </tbody>
+        </Table>
+      )}
     </ProductRoot>
   );
 };

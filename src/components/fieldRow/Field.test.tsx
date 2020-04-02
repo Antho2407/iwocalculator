@@ -2,7 +2,7 @@ import React from "react";
 import { shallow, ShallowWrapper } from "enzyme";
 import FieldRow, { FieldRowProps } from "./FieldRow";
 
-describe("<App />", () => {
+describe("<Field />", () => {
   let wrapper: ShallowWrapper<FieldRowProps>;
 
   describe("When the component is mounted", () => {
